@@ -1,27 +1,26 @@
-package p1_3;
+package p1_3.array;
 
 
 /**
  * @Author yongz
  * @Date 2020/8/13、21:03
  * <p>
- * 自己二次封装的泛型数组类：动态数组,
+ * 自己二次封装的数组类：动态数组
  */
-public class Array2<E> {
+public class Array3 {
 
-    private E[] data;  // 存放数据
+    private int[] data;  // 存放数据
     private int size; //
 
 
     // 传入capacity容量初始化数组
-    public Array2(int capacity) {
-//        data = new E[capacity];
-        data = (E[]) new Object[capacity];
+    public Array3(int capacity) {
+        data = new int[capacity];
         size = 0;
     }
 
     // 无参构造数组，默认容量为10.
-    public Array2() {
+    public Array3() {
         this(10);
     }
 
@@ -41,18 +40,18 @@ public class Array2<E> {
     }
 
     // 向数组末尾添加一个元素
-    public void addLast(E e) {
+    public void addLast(int e) {
         add(size, e);
     }
 
     // 向数组末尾添加一个元素
-    public void addFrist(E e) {
+    public void addFrist(int e) {
         add(0, e);
     }
 
     // 向数组末尾添加一个元素
-    public void add(int index, E e) {
-        if (size == data.length) resize(data.length+data.length/2 ); //数组扩容
+    public void add(int index, int e) {
+        if (size == data.length) expandCapacity(); //数组扩容
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException("Add failed， index is illegal");
 
@@ -64,23 +63,16 @@ public class Array2<E> {
     }
 
     //获取数组中索引为index的参数
-    public E get(int index) {
+    public int get(int index) {
         if (index >= size || index < 0)
             throw new IllegalArgumentException("Get failed， index is illegal");
 
         return data[index];
     }
 
-    public E getLast( ) {
-        return data[size-1];
-    }
 
-
-    public E getFirst() {
-        return data[0];
-    }
     //根据index修改数组中参数
-    public void set(int index, E e) {
+    public void set(int index, int e) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Set failed， index is illegal");
 
@@ -89,31 +81,24 @@ public class Array2<E> {
 
 
     // 根据索引删除参数
-    public E remove(int index) {
-        E temp = data[index];
+    public void remove(int index) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Set failed， index is illegal");
         for (int i = index; i < size; i++) {
             data[i] = data[i + 1];
         }
         size--;
-
-        if (size==data.length/4 && data.length/2>5)
-            resize(data.length/2);
-       // data[size] = null;
-
-        return temp;
     }
 
-    public E removeFrist() {
-       return   remove(0);
+    public void removeFrist(int index) {
+        remove(0);
     }
 
-    public E removeLast() {
-        return remove(size - 1);
+    public void removeLast(int index) {
+        remove(size - 1);
     }
 
-    public boolean removeElement(E e) {
+    public boolean removeElement(int e) {
         int i = find(e);
         if (i >= 0) {
             remove(i);
@@ -122,37 +107,29 @@ public class Array2<E> {
         return false;
     }
 
-    public void removeAllElement(E e) {
+    public void removeAllElement(int e) {
         while (removeElement(e));
     }
 
 
     // 判断是否包含参数e
-    public boolean contains(E e) {
+    public boolean contains(int e) {
         for (int i = 0; i < size; i++)
-            if ( data[i].equals(e) ) return true;
+            if (e == data[i]) return true;
         return false;
     }
 
     // 查找元素的索引
-    public int find(E e) {
+    public int find(int e) {
         for (int i = 0; i < size; i++)
-            if (  data[i].equals(e)) return i;
+            if (e == data[i]) return i;
         return -1;
     }
 
     // 数组扩容,扩容1.5倍
     private void expandCapacity() {
-        E[] temp = this.data;
-        this.data = (E[]) new Object[data.length+data.length/2 ];
-        for (int i = 0; i < temp.length; i++)
-            this.data[i] = temp[i];
-    }
-
-    //  数组的扩容缩容
-    private void resize(int capacity) {
-        E[] temp = this.data;
-        this.data = (E[]) new Object[capacity ];
+        int[] temp = this.data;
+        this.data = new int[data.length+data.length/2 ];
         for (int i = 0; i < temp.length; i++)
             this.data[i] = temp[i];
     }
@@ -169,6 +146,4 @@ public class Array2<E> {
                 + sb.toString() +
                 ']';
     }
-
-
 }
