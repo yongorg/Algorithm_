@@ -12,7 +12,7 @@ public class LoopQueue2<E> implements Queue<E> {
 
     private E[] data;
 
-    private int front = 0, tail = 0;//队首与队尾的索引
+    private int front = 0, tail = 0;   //队首与队尾的索引
 
     public LoopQueue2(int capacity) {
         this.data = (E[]) new Object[capacity];
@@ -25,8 +25,8 @@ public class LoopQueue2<E> implements Queue<E> {
     @Override
     public void enqueue(E e) {
         if ((tail + 1) % (data.length - 1) == front) {
-//            throw new IndexOutOfBoundsException("队列已满");
-            // 扩容
+   //            throw new IndexOutOfBoundsException("队列已满");
+               // 扩容
             resize((int) ((data.length - 1) * 1.5));
             data[tail++] = e;
         } else if (tail == data.length - 1 && front > 1) {
@@ -65,7 +65,7 @@ public class LoopQueue2<E> implements Queue<E> {
         if (front == data.length)
             front = 0;
 
-        // 缩容
+           // 缩容
         if (getSize()< data.length/4 && data.length/2>10)
             resize(data.length/2);
         return temp;

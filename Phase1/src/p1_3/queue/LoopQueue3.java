@@ -6,7 +6,7 @@ package p1_3.queue;
  */
 public class LoopQueue3<E> implements Queue<E> {
     private E[] data;
-    private int front = 0, tail = 0;//队首与队尾的索引
+    private int front = 0, tail = 0;   //队首与队尾的索引
     private int size = 0;
 
     public LoopQueue3(int capacity) {

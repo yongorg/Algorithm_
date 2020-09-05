@@ -34,19 +34,19 @@ public class ArrayStack<E> implements Stack<E> {
         return array.getCapacity();
     }
 
-    // 进栈
+       // 进栈
     @Override
     public void push(E e) {
         array.addLast(e);
     }
 
-    // 出栈
+       // 出栈
     @Override
     public E pop() {
         return array.removeLast();
     }
 
-    // 看一下栈顶的元素
+       // 看一下栈顶的元素
     @Override
     public E peek() {
         return array.getLast();

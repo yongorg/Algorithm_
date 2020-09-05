@@ -6,7 +6,7 @@ package p1_3.queue;
  */
 public class LoopQueue<E> implements Queue<E> {
     private E[] data;
-    private int front = 0, tail = 0;//队首与队尾的索引
+    private int front = 0, tail = 0;   //队首与队尾的索引
 
     public LoopQueue(int capacity){
         data = (E[])new Object[capacity + 1];
@@ -27,14 +27,14 @@ public class LoopQueue<E> implements Queue<E> {
 
     @Override
     public int getSize(){
-        // 注意此时getSize的逻辑:
-        // 如果tail >= front，非常简单，队列中的元素个数就是tail - front
-        // 如果tail < front，说明我们的循环队列"循环"起来了，此时，队列中的元素个数为：
-        // tail - front + data.length
-        // 画画图，看能不能理解为什么？
-        //
-        // 也可以理解成，此时，data中没有元素的数目为front - tail,
-        // 整体元素个数就是 data.length - (front - tail) = data.length + tail - front
+           // 注意此时getSize的逻辑:
+           // 如果tail >= front，非常简单，队列中的元素个数就是tail - front
+           // 如果tail < front，说明我们的循环队列"循环"起来了，此时，队列中的元素个数为：
+           // tail - front + data.length
+           // 画画图，看能不能理解为什么？
+           //
+           // 也可以理解成，此时，data中没有元素的数目为front - tail,
+           // 整体元素个数就是 data.length - (front - tail) = data.length + tail - front
         return tail >= front ? tail - front : tail - front + data.length;
     }
 

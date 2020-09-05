@@ -2,6 +2,7 @@ package p1_4.linkedlist;
 
 
 import p1_3.stack.ArrayStack;
+import p1_3.stack.LinkedListStack;
 import p1_3.stack.Stack;
 
 import java.util.Random;
@@ -12,7 +13,7 @@ import java.util.Random;
  */
 public class Main {
 
-    // 测试ArrayStack与LinkedListStack，所需时间，单位：秒
+       // 测试ArrayStack与LinkedListStack，所需时间，单位：秒
     public static void test1(){
         int opCount= 10000000;
         Stack<Integer> arrayStack = new ArrayStack<>();
@@ -24,7 +25,7 @@ public class Main {
         double timeLoop = testStack(linkedListStack, opCount);
         System.out.println("linkedListStack,time="+timeLoop+"s");
     }
-    // 测试ArrayStack与LinkedListStack，所需时间，单位：秒
+       // 测试ArrayStack与LinkedListStack，所需时间，单位：秒
     private static double testStack(Stack<Integer> stack, int opConut) {
         long start = System.nanoTime();
 
@@ -43,7 +44,18 @@ public class Main {
 
 
     public static void main(String[] args) {
-        test1();
+   //        test1();
+        LinkedListRecursion<Integer> linked = new LinkedListRecursion<>();
+        for (int i = 0; i < 10; i++) {
+            linked.addLast(i);
+        }
+
+        linked.add(5, 11);
+        System.out.println(linked);
+        linked.set(5, 10);
+        System.out.println(linked);
+        linked.remove(5);
+        System.out.println(linked);
     }
 
 }

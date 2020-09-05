@@ -9,50 +9,50 @@ package p1_3.array;
  */
 public class Array<E> {
 
-    private E[] data;  // 存放数据
-    private int size; //
+    private E[] data;     // 存放数据
+    private int size;    //
 
 
-    // 传入capacity容量初始化数组
+       // 传入capacity容量初始化数组
     public Array(int capacity) {
-//        data = new E[capacity];
+   //        data = new E[capacity];
         data = (E[]) new Object[capacity];
         size = 0;
     }
 
-    // 无参构造数组，默认容量为10.
+       // 无参构造数组，默认容量为10.
     public Array() {
         this(10);
     }
 
-    // 获取数组中的元素个数
+       // 获取数组中的元素个数
     public int getSize() {
         return this.size;
     }
 
-    // 获取数组的容量
+       // 获取数组的容量
     public int getCapacity() {
         return data.length;
     }
 
-    // 判断数组是否为空
+       // 判断数组是否为空
     public boolean isEmpty() {
         return size == 0;
     }
 
-    // 向数组末尾添加一个元素
+       // 向数组末尾添加一个元素
     public void addLast(E e) {
         add(size, e);
     }
 
-    // 向数组末尾添加一个元素
+       // 向数组末尾添加一个元素
     public void addFrist(E e) {
         add(0, e);
     }
 
-    // 向数组末尾添加一个元素
+       // 向数组末尾添加一个元素
     public void add(int index, E e) {
-        if (size == data.length) resize(data.length+data.length/2 ); //数组扩容
+        if (size == data.length) resize(data.length+data.length/2 );    //数组扩容
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException("Add failed， index is illegal");
 
@@ -63,7 +63,7 @@ public class Array<E> {
         size++;
     }
 
-    //获取数组中索引为index的参数
+       //获取数组中索引为index的参数
     public E get(int index) {
         if (index >= size || index < 0)
             throw new IllegalArgumentException("Get failed， index is illegal");
@@ -79,7 +79,7 @@ public class Array<E> {
     public E getFirst() {
         return data[0];
     }
-    //根据index修改数组中参数
+       //根据index修改数组中参数
     public void set(int index, E e) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Set failed， index is illegal");
@@ -88,7 +88,7 @@ public class Array<E> {
     }
 
 
-    // 根据索引删除参数
+       // 根据索引删除参数
     public E remove(int index) {
         E temp = data[index];
         if (index >= size || index < 0)
@@ -98,10 +98,10 @@ public class Array<E> {
         }
         size--;
 
-        // 防止复杂度的震荡
+           // 防止复杂度的震荡
         if (size==data.length/4 && data.length/2>5)
             resize(data.length/2);
-       // data[size] = null;
+          // data[size] = null;
 
         return temp;
     }
@@ -128,21 +128,21 @@ public class Array<E> {
     }
 
 
-    // 判断是否包含参数e
+       // 判断是否包含参数e
     public boolean contains(E e) {
         for (int i = 0; i < size; i++)
             if ( data[i].equals(e) ) return true;
         return false;
     }
 
-    // 查找元素的索引
+       // 查找元素的索引
     public int find(E e) {
         for (int i = 0; i < size; i++)
             if (  data[i].equals(e)) return i;
         return -1;
     }
 
-    // 数组扩容,扩容1.5倍
+       // 数组扩容,扩容1.5倍
     private void expandCapacity() {
         E[] temp = this.data;
         this.data = (E[]) new Object[data.length+data.length/2 ];
@@ -150,7 +150,7 @@ public class Array<E> {
             this.data[i] = temp[i];
     }
 
-    //  数组的扩容缩容
+       //  数组的扩容缩容
     private void resize(int capacity) {
         E[] temp = this.data;
         this.data = (E[]) new Object[capacity];

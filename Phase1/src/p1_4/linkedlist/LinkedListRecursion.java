@@ -1,10 +1,11 @@
 package p1_4.linkedlist;
 
 /**
- * @Author yongz
- * @Date 2020/8/30、15:14
+ * 递归实现链表的crud
+ *
+ * @param <E>
  */
-public class LinkedList<E> {
+public class LinkedListRecursion<E> {
        // 节点
     private class Node {
         public E e;
@@ -33,7 +34,7 @@ public class LinkedList<E> {
     private Node dummyHead;    //虚拟头节点
     private int size;
 
-    public LinkedList() {
+    public LinkedListRecursion() {
         dummyHead = new Node(null, null);
         size = 0;
     }
@@ -61,16 +62,18 @@ public class LinkedList<E> {
             throw new IllegalArgumentException("Add failed. Illegal index.");
 
 
-        Node prev = dummyHead;
-        for (int i = 0; i < index; i++)
-            prev = prev.next;
-   //            Node node = new Node(e);
-   //            node.next = prev.next;
-   //            prev.next = node;
-        prev.next = new Node(e, prev.next);    // 1行解决
+        Node LastIndexNode = getLastIndexNode(dummyHead, index, 0);
+        Node del = LastIndexNode.next;
+        LastIndexNode.next = new Node(e, del);
         size++;
 
 
+    }
+
+    private Node getLastIndexNode(Node dummyHead, int index, int i) {
+        if (i == index)
+            return dummyHead;
+        return getLastIndexNode(dummyHead, index, i + 1).next;
     }
 
 
@@ -83,11 +86,8 @@ public class LinkedList<E> {
     public E get(int index) {
         if (index < 0 || index > size)
             throw new IllegalArgumentException("Get failed. Illegal index.");
-        Node cur = dummyHead.next;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
-        }
-        return cur.e;
+
+        return getLastIndexNode(dummyHead, index, 0).next.e;
     }
 
        // 获取第一个元素
@@ -105,11 +105,8 @@ public class LinkedList<E> {
     public void set(int index, E e) {
         if (index < 0 || index > size)
             throw new IllegalArgumentException("Set failed. Illegal index.");
-        Node cur = dummyHead.next;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
-        }
-        cur.e = e;
+        Node indexNode = getLastIndexNode(dummyHead, index, 0).next;
+        indexNode.e = e;
     }
 
     public void setFrist(E e) {
@@ -122,31 +119,30 @@ public class LinkedList<E> {
         set(size - 1, e);
     }
 
-    public E remove(int index){
+    public E remove(int index) {
         if (index < 0 || index > size)
             throw new IllegalArgumentException("Remove failed. Illegal index.");
-        Node prev = dummyHead;
-        for (int i = 0; i < index; i++) {
-            prev = prev.next;
-        }
-        Node temp = prev.next;
-        prev.next = prev.next.next;
-        temp.next =null;   //gc
+
+        Node lastIndex = getLastIndexNode(dummyHead, index , 0);
+        Node thisIndex = lastIndex.next;
+        lastIndex.next = lastIndex.next.next;
+        thisIndex.next = null;
         size--;
-        return temp.e;
+        return thisIndex.e;
     }
 
-    public E removeFrist(){
+    public E removeFrist() {
         return remove(0);
     }
-    public E removeLast(){
-        return remove(size-1);
+
+    public E removeLast() {
+        return remove(size - 1);
     }
 
        // 查找链表中是否有元素e
     public boolean contains(E e) {
            // size 遍历法
-       //        Node cur = dummyHead.next;
+   //        Node cur = dummyHead.next;
    //        for (int i = 0; i < size; i++) {
    //            if (e.equals(cur.e)) return true;
    //            cur = cur.next;
@@ -154,7 +150,7 @@ public class LinkedList<E> {
    //        return false;
            //链表的特性遍历
         Node cur = dummyHead.next;
-        while (cur!= null){
+        while (cur != null) {
             if (e.equals(cur.e)) return true;
             cur = cur.next;
         }
@@ -167,7 +163,7 @@ public class LinkedList<E> {
         sb.append("LinkedList: ");
 
         Node cur = dummyHead.next;
-        while (cur != null){
+        while (cur != null) {
             sb.append(cur.e);
             sb.append("->");
             cur = cur.next;

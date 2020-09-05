@@ -19,13 +19,13 @@ public class Main {
             Integer[] datas = ArrayGenerator.getOrderArr(n);
 
             long start = System.nanoTime();
-            for (int i = 0; i < 100; i++) { //多次测量
-                LeanrSearch.search(datas, n);//查找不到的最坏情况测试性能
+            for (int i = 0; i < 100; i++) {    //多次测量
+                LeanrSearch.search(datas, n);   //查找不到的最坏情况测试性能
             }
             long end = System.nanoTime();
 
             double time = (end - start) / 1000000000.0;
-            // 当数组长度为n时，执行100次所需要的时间
+               // 当数组长度为n时，执行100次所需要的时间
             System.out.println("n = " + n + "\t 100次：time = " + time + "s");
         }
 

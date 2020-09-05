@@ -1,6 +1,6 @@
-package p1_4.linkedlist;
+package p1_3.stack;
 
-import p1_3.stack.Stack;
+import p1_4.linkedlist.LinkedList;
 
 /**
  * @Author yongz
@@ -17,13 +17,13 @@ public class LinkedListStack<E> implements Stack <E> {
 
     @Override
     public void push(E e) {
-//        linkedList.addLast(e); //由于上面上述链表的实现，若把栈顶设置为last，这种性能低
+   //        linkedList.addLast(e);    //由于上面上述链表的实现，若把栈顶设置为last，这种性能低
         linkedList.addFrist(e);
     }
 
     @Override
     public E pop() {
-//        return linkedList.removeLast(); //由于上面上述链表的实现，若把栈顶设置为last，这种性能低
+   //        return linkedList.removeLast();    //由于上面上述链表的实现，若把栈顶设置为last，这种性能低
         return linkedList.removeFrist();
     }
 

@@ -58,8 +58,8 @@ public class LeetCode20 {
 
     public boolean isValid2(String s) {
         char[] chars = s.toCharArray();
-//        ArrayStack<Character> stack = new ArrayStack<>();
-        Stack<Character> stack = new Stack<>(); // java 中已经不推荐使用了，原因该Stack<E> extends Vector<E>是继承关系
+   //        ArrayStack<Character> stack = new ArrayStack<>();
+        Stack<Character> stack = new Stack<>();    // java 中已经不推荐使用了，原因该Stack<E> extends Vector<E>是继承关系
 
         for (char aChar : chars) {
             if (aChar == '(' || aChar == '[' || aChar == '{') {
@@ -82,7 +82,7 @@ public class LeetCode20 {
                 }
             }
         }
-//        return true;  //错了，如果还有值呢
+   //        return true;     //错了，如果还有值呢
         return stack.isEmpty();
     }
 }

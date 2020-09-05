@@ -18,7 +18,7 @@ public class LeanrSearch<E> {
      */
     public static <E> int search (E[] arrays, E target) {
         for (int i = 0; i < arrays.length; i++)
-            if (arrays[i].equals(target)) return i; // 注：类对比采用equals
+            if (arrays[i].equals(target)) return i;    // 注：类对比采用equals
         return -1;
     }
 }
