@@ -1,10 +1,6 @@
 package p1_1;
 
-import com.sun.jmx.snmp.agent.SnmpMibOid;
-import common.ArrayGenerator;
-
-import java.util.Arrays;
-import java.util.concurrent.ForkJoinPool;
+import util.ArrayGenerator;
 
 /**
  * @Author yongz

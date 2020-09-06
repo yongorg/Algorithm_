@@ -1,6 +1,6 @@
 package p1_2;
 
-import common.ArrayGenerator;
+import util.ArrayGenerator;
 
 import java.util.Arrays;
 
