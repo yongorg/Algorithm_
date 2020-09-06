@@ -1,0 +1,57 @@
+package p2_1;
+
+
+
+import util.SortInterface;
+
+import java.util.Arrays;
+
+/**
+ * @Author yongz
+ * @Date 2020/9/4、23:35
+ * 内存操作优化
+ */
+public class MergeSort5 implements SortInterface {
+
+    @Override
+    public  <E extends Comparable> void sort(E[] data) {
+        E[] copyData = Arrays.copyOf(data, data.length);
+        mergeSort(data, 0, data.length - 1,copyData);
+    }
+
+    private static <E extends Comparable> void mergeSort(E[] data, int l, int r,E[] copyData) {
+        if (l >= r) return;
+
+        int mid = (l + r) / 2;   //l+r超出int的最大值就会出问题，
+        // 对l到mid进行排序
+        mergeSort(data, l, mid,copyData);
+        // 对mid+1 到 r进行排序
+        mergeSort(data, mid + 1, r,copyData);
+
+        // 合并数组
+        merge(data, l, mid, r,copyData);
+    }
+
+
+    private static <E extends Comparable> void merge(E[] data, int l, int mid, int r,E[] copyData) {
+
+        // 优化3：内存优化
+        for (int i = l; i <= r; i++) {
+            copyData[i] = data[i];
+        }
+
+        int i = l;
+        int j = mid + 1;
+        for (int x = l; x < r + 1; x++) {
+            if (i > mid)
+                data[x] = copyData[j++ ];
+            else if (j > r)
+                data[x] = copyData[i++ ];
+            else
+                data[x] = copyData[i].compareTo(copyData[j]) <= 0 ? copyData[i++] : copyData[j++];
+
+        }
+    }
+
+
+}

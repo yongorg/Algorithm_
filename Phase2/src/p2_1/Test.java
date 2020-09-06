@@ -7,21 +7,24 @@ import util.SortingHelper;
 
 import java.util.Arrays;
 
+
 /**
  * @Author yongz
  * @Date 2020/9/6、0:51
+ *
  */
 public class Test {
 
     public static void main(String[] args) {
-        int n = 100000;
-        Integer[] arr1 = ArrayGenerator.getRandomArr(n);
-        Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
-        Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
+        int n = 1000000 ;
 
-        SortingHelper.sortTest(InsertSort.class, arr1);
-        SortingHelper.sortTest(SelectSort.class, arr2);
-        SortingHelper.sortTest(MergeSort2.class, arr3);
+        Integer[] arr1 = ArrayGenerator.getRandomArr(n); //有序数组
+        Integer[] arr2 = Arrays.copyOf(arr1, arr1.length); //有序数组
+
+        // MergeSort2是插入排序算法未优化过的归并排序
+        SortingHelper.sortTest(MergeSort.class, arr1);
+        // MergeSort4是插入排序算法优化过的的归并排序
+        SortingHelper.sortTest(MergeSort6.class, arr2);
 
     }
 

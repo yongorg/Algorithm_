@@ -1,7 +1,8 @@
 package p2_1;
 
 
-import com.sun.scenario.effect.Merge;
+
+import util.SortInterface;
 
 import java.util.Arrays;
 
@@ -9,22 +10,17 @@ import java.util.Arrays;
  * @Author yongz
  * @Date 2020/9/4、23:35
  */
-public class MergeSort {
-    public static void main(String[] args) {
-        int[] data = {2, 1, 7, 8, 4, 3, 2, 5};
-        sort(data);
-        System.out.println(Arrays.toString(data));
-    }
+public class MergeSort implements SortInterface {
 
-    public static void sort(int[] data) {
-
+    @Override
+    public  <E extends Comparable> void sort(E[] data) {
         mergeSort(data, 0, data.length - 1);
     }
 
-    private static void mergeSort(int[] data, int l, int r) {
+    private static <E extends Comparable> void mergeSort(E[] data, int l, int r) {
         if (l >= r) return;
 
-         int mid = (l + r) / 2;   //l+r超出int的最大值就会出问题，
+        int mid = (l + r) / 2;   //l+r超出int的最大值就会出问题，
         // 对l到mid进行排序
         mergeSort(data, l, mid);
         // 对mid+1 到 r进行排序
@@ -35,21 +31,19 @@ public class MergeSort {
     }
 
 
-    private static void merge(int[] data, int l, int mid, int r) {
-        int[] temp = new int[data.length];
-        for (int i = l; i < r + 1; i++) {
-            temp[i] = data[i];
-        }
+    private static <E extends Comparable> void merge(E[] data, int l, int mid, int r) {
+
+        E[] copyData = Arrays.copyOfRange(data, l, r + 1);
 
         int i = l;
         int j = mid + 1;
         for (int x = l; x < r + 1; x++) {
-            if (i == (mid + 1))
-                data[x] = temp[j++];
-            else if (j == r + 1)
-                data[x] = temp[i++];
+            if (i > mid)
+                data[x] = copyData[j++ - l];
+            else if (j > r)
+                data[x] = copyData[i++ - l];
             else
-                data[x] = temp[i] <= temp[j] ? temp[i++] : temp[j++];
+                data[x] = copyData[i - l].compareTo(copyData[j - l]) <= 0 ? copyData[i++ - l] : copyData[j++ - l];
 
         }
     }
