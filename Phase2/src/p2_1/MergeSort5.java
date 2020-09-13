@@ -27,9 +27,10 @@ public class MergeSort5 implements SortInterface {
         mergeSort(data, l, mid,copyData);
         // 对mid+1 到 r进行排序
         mergeSort(data, mid + 1, r,copyData);
-
-        // 合并数组
-        merge(data, l, mid, r,copyData);
+        // 优化1！如果前半个数组[l,mid]的最后一个值[mid]已经比后半截数组[mid+1,r]的第一个值[mid+1]小于等于，说明每必要去合并操作。
+        if (data[mid].compareTo(data[mid + 1]) > 0)
+            // 合并数组
+            merge(data, l, mid, r,copyData);
     }
 
 
