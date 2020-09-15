@@ -1,13 +1,33 @@
 package p2_2;
 
+import util.ArrayGenerator;
 import util.SortInterface;
+import util.SortingHelper;
+
+import java.util.Random;
+
 
 /**
  * @Author yongz
  * @Date 2020/9/13、17:39
+ * 测试第一版的QuickSort，对于有序数组是一个O(n²)的算法，递归深度是O(n),数据量过大会导致StackOverflowError 堆溢出；
+ * <p>
+ * 原因是由于partition，每次都是取第一个，就会导致每次只划分了一个区间
+ * <p>
+ * 该类为快速排序添加随机化
  */
-public class QuickSort implements SortInterface {
+public class QuickSort3 implements SortInterface {
 
+    private Random random = new Random();
+
+    public static void main(String[] args) {
+        int n = 10000000;
+//        Integer[] arr = ArrayGenerator.getOrderArr(n);
+//        SortingHelper.sortTest(QuickSort.class, arr);
+
+        Integer[] arr2 = ArrayGenerator.getOrderArr(n);
+        SortingHelper.sortTest(QuickSort3.class, arr2);
+    }
 
     @Override
     public <E extends Comparable> void sort(E[] arrays) {
@@ -24,7 +44,12 @@ public class QuickSort implements SortInterface {
     }
 
 
+    // 优化有序数组
     private <E extends Comparable> int partition(E[] arrays, int l, int r) {
+        // 随机值
+        int p = random.nextInt(r - l + 1) + l;
+        swap(arrays, p, l);
+
         // arr[l+1...j] < v; arr[j+1...i] >= v
         int j = l;
         for (int i = l + 1; i <= r; i++) {

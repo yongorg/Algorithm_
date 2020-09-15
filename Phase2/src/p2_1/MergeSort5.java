@@ -37,9 +37,9 @@ public class MergeSort5 implements SortInterface {
     private static <E extends Comparable> void merge(E[] data, int l, int mid, int r,E[] copyData) {
 
         // 优化3：内存优化
-        for (int i = l; i <= r; i++) {
+        for (int i = l; i <= r; i++)
             copyData[i] = data[i];
-        }
+
 
         int i = l;
         int j = mid + 1;
