@@ -16,14 +16,17 @@ import java.util.Random;
  * <p>
  * 该类为快速排序添加随机化
  */
-public class QuickSort3 implements SortInterface {
+public class QuickSort4 implements SortInterface {
 
     private Random random = new Random();
 
     public static void main(String[] args) {
-        int n = 1000000;
+        int n = 1000;
         Integer[] arr2 = ArrayGenerator.getOrderArr(n);
-        SortingHelper.sortTest(QuickSort3.class, arr2);
+        SortingHelper.sortTest(QuickSort4.class, arr2);
+
+        Integer[] arr3 = ArrayGenerator.generateSpecialArray(n);
+        SortingHelper.sortTest(QuickSort4.class, arr3);
     }
 
     @Override
@@ -43,9 +46,8 @@ public class QuickSort3 implements SortInterface {
 
     // 优化有序数组
     private <E extends Comparable> int partition(E[] arrays, int l, int r) {
-        // 随机值
-        int p = random.nextInt(r - l + 1) + l;
-        swap(arrays, p, l);
+        // 去[r,l]中间的值
+        swap(arrays, l, (r + l) / 2);
 
         // arr[l+1...j] < v; arr[j+1...i] >= v
         int j = l;
