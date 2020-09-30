@@ -20,6 +20,13 @@ public class MaxHeap<E extends Comparable<E>> {
         this.data = new Array<>();
     }
 
+    public MaxHeap(E[] arrays) {
+        this.data = new Array<E>(arrays);
+        for (int i = parent(arrays.length - 1); i >= 0; i--)
+            siftDown(i);
+    }
+
+
     // 返回堆中的元素个数
     public int size() {
         return data.getSize();
@@ -76,7 +83,7 @@ public class MaxHeap<E extends Comparable<E>> {
     // 取出堆中最大元素
     public E extractMax() {
         E max = findMax();
-        data.swap(0, size()-1);
+        data.swap(0, size() - 1);
         data.removeLast();
         siftDown(0);
         return max;
@@ -116,16 +123,11 @@ public class MaxHeap<E extends Comparable<E>> {
 
 
     // 取出最大元素后，放入新元素
-    public E replace(E e){
+    public E replace(E e) {
         E max = findMax();
         data.set(0, max);
         siftDown(0);
         return max;
     }
 
-    // 将任意数组整理成堆的形状
-    public E[] heapify(E[] arrays){
-
-        return null;
-    }
 }

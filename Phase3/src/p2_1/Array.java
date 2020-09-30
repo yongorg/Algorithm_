@@ -1,6 +1,8 @@
 package p2_1;
 
 
+import org.omg.CORBA.Object;
+
 /**
  * @Author yongz
  * @Date 2020/8/13、21:03
@@ -23,6 +25,14 @@ public class Array<E> {
     // 无参构造数组，默认容量为10.
     public Array() {
         this(10);
+    }
+
+    public Array(E[] arrays) {
+        this.data = (E[]) new Object[arrays.length];
+        for (int i = 0; i < arrays.length; i++) {
+            data[i] = arrays[i];
+        }
+        size = arrays.length;
     }
 
     // 获取数组中的元素个数
