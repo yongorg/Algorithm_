@@ -6,6 +6,7 @@ package ptest;
         */
 public class Test {
     public static void main(String[] args) {
-        System.out.println("我是phase1");
+        //ystem.out.println("我是phase1");
+        System.out.println("我是phase2 这个bug我也修复了！");
     }
 }
