@@ -1,10 +1,11 @@
-package p3_2;
+package p3_2.bubblesort;
 
 import uitl.SortInterface;
 
 /**
  * @Author yongz
  * @Date 2020/10/17、15:08
+ * 冒泡排序法
  */
 public class BubbleSort implements SortInterface {
     @Override

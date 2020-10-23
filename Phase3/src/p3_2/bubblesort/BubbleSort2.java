@@ -1,4 +1,4 @@
-package p3_2;
+package p3_2.bubblesort;
 
 import uitl.SortInterface;
 
