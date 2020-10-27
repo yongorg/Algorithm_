@@ -14,12 +14,9 @@ public class HeapSort implements SortInterface {
 
     @Override
     public <E extends Comparable<E>> void sort(E[] arrays) {
-        MaxHeap<E> maxHeap = new MaxHeap<>();
-        for (E e : arrays)
-            maxHeap.add(e);
+        for (int i = 0; i < arrays.length; i++) {
 
-        for (int i = arrays.length - 1; i >= 0; i--)
-            arrays[i] = maxHeap.extractMax();
+        }
 
     }
 
